@@ -9,6 +9,9 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.example.shiftsdemo.R;
+import com.example.shiftsdemo.shifts.fragments.AcceptedFragment;
+import com.example.shiftsdemo.shifts.fragments.AppliedFragment;
+import com.example.shiftsdemo.shifts.fragments.OpenFragment;
 
 public class ShiftDetailsPager extends FragmentPagerAdapter
 {

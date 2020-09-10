@@ -73,6 +73,10 @@ public class RegisterActivity extends Activity implements View.OnClickListener, 
             Toast.makeText(this, "Please fill email", Toast.LENGTH_SHORT).show();
             return;
         }
+        if (!email.contains("@")) {
+            mEmailET.setError("Not a valid email");
+            return;
+        }
         if (TextUtils.isEmpty(password)) {
             Toast.makeText(this, "Please fill password", Toast.LENGTH_SHORT).show();
             return;

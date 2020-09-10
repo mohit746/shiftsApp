@@ -1,4 +1,4 @@
-package com.example.shiftsdemo.shifts;
+package com.example.shiftsdemo.shifts.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -14,17 +14,15 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shiftsdemo.R;
+import com.example.shiftsdemo.database.AcceptedData;
 import com.example.shiftsdemo.database.AppliedData;
-import com.example.shiftsdemo.database.OpenData;
+import com.example.shiftsdemo.shifts.MyListData;
 
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 
-public class OpenFragment extends Fragment {
-    private final String TAG = "OpenFragment";
+public class AppliedFragment extends Fragment
+{
+    private final String TAG = "AppliedFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -32,24 +30,33 @@ public class OpenFragment extends Fragment {
         //Returning the layout file after inflating
         //Change R.layout.tab1 in you classes
         Log.d(TAG, "onCreateView: inside method");
-        View lView = inflater.inflate(R.layout.frag_open, container, false);
+        View lView = inflater.inflate(R.layout.frag_applied, container, false);
 
-        OpenData openData = OpenData.getInstance();
+        AppliedData appliedData = AppliedData.getInstance();
 
         RecyclerView recyclerView = (RecyclerView) lView.findViewById(R.id.recyclerView);
-        MyListAdapter adapter = new MyListAdapter(openData.openList);
+        MyListAdapter adapter = MyListAdapter.getInstance(appliedData.appliedList);
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         recyclerView.setAdapter(adapter);
+
         return lView;
     }
 
     static class MyListAdapter extends RecyclerView.Adapter<MyListAdapter.ViewHolder>{
-        private ArrayList<MyListData> listdata = new ArrayList<>();;
+        private ArrayList<MyListData> listdata = new ArrayList<>();
+        private static MyListAdapter mMyListAdapter = null;
 
         // RecyclerView recyclerView;
-        public MyListAdapter(ArrayList<MyListData> listdata) {
+        private MyListAdapter(ArrayList<MyListData> listdata) {
             this.listdata = listdata;
+        }
+
+        public static MyListAdapter getInstance(ArrayList<MyListData> listdata) {
+            if (mMyListAdapter == null) {
+                mMyListAdapter = new MyListAdapter(listdata);
+            }
+            return mMyListAdapter;
         }
 
         @Override
@@ -72,10 +79,11 @@ public class OpenFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     Log.d("MyListAdapter", "onClick: clicked on apply for "+myListData.getHospitalName());
-                    AppliedData.getInstance().appliedList.add(myListData);
-                    AppliedFragment.MyListAdapter.getInstance(AppliedData.getInstance().appliedList).notifyDataSetChanged();
+                    AcceptedData.getInstance().acceptedList.add(myListData);
+                    AcceptedFragment.MyListAdapter.getInstance(AcceptedData.getInstance().acceptedList).notifyDataSetChanged();
                     listdata.remove(position);
                     notifyDataSetChanged();
+
                 }
             });
         }
@@ -104,6 +112,7 @@ public class OpenFragment extends Fragment {
                 this.location = (TextView) itemView.findViewById(R.id.location_TV);
                 this.department = (TextView) itemView.findViewById(R.id.department_TV);
                 this.applyButton = (Button) itemView.findViewById(R.id.apply_button);
+                this.applyButton.setText(R.string.accept);
                 cardView = (CardView)itemView.findViewById(R.id.cardView);
             }
         }

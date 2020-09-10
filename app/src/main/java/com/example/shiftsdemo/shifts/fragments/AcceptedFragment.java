@@ -1,4 +1,4 @@
-package com.example.shiftsdemo.shifts;
+package com.example.shiftsdemo.shifts.fragments;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shiftsdemo.R;
 import com.example.shiftsdemo.database.AcceptedData;
+import com.example.shiftsdemo.shifts.MyListData;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
