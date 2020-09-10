@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Shifts Demo</string>
+    <string name="shifts_app">Shifts App</string>
+    <string name="login">Login</string>
+    <string name="login_description">Please enter login details</string>
+    <string name="username">User name *</string>
+    <string name="password">Password *</string>
+    <string name="registration">Registration</string>
+    <string name="name">Name *</string>
+    <string name="age">Age *</string>
+    <string name="email">E-mail *</string>
+    <string name="save">save</string>
+    <string name="shifts">Shifts List</string>
+    <string name="open">Open</string>
+    <string name="applied">Applied</string>
+    <string name="accepted">Accepted</string>
+    <string name="accept">accept</string>
+    <string name="apply">Apply</string>
+</resources>
